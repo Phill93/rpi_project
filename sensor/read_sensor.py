@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import time
 import pymysql.cursors
 
