@@ -1,0 +1,122 @@
+@font-face{
+	font-family: Open Sans;
+	src: url(../../stuff/fonts/OpenSans-Light.ttf);
+}
+*{ box-shadow: none !important; text-shadow: none !important; font-family: Open Sans;}
+body{ outline: none !important; }
+nav { display: none; width: 75% !important;}
+h1{ text-align: center; }
+i{ padding: 0em !important; margin: 0em !important;}
+i.fa-close{ cursor: pointer; }
+
+div.popup{
+	position: absolute;
+	background-color: white;
+	border-radius: 3px;
+	overflow: auto;
+}
+div.popupClose{
+	text-align: right;
+	padding-top: 16px !important;
+	padding-bottom: 16px !important;
+}
+.closeNav{ text-align: right; padding: 0.5em 1em;}
+
+.averageContainer{ cursor: pointer; height: 200px; line-height: 200px;}
+.averageContainer:hover{ opacity: 0.9; }
+
+.row{
+	margin: 1em 0em;
+}
+
+.rowTest div{
+	float: left;
+	text-align: center;
+}
+.rowTest:after{ content:"";display:table;clear:both; }
+.rowTest .left, .rowTest .right{ width: 20%; }
+.rowTest .left, .rowTest .center, .rowTest .right{ height: 52px !important; }
+.rowTest .center{ width: 60%; line-height: 52px;}
+.rowTest .three-col { width: 33.33%; }
+.rowTest .four-col { width: 25%; }
+.rowTest .five-col { width: 20%; }
+.rowTest .six-col { width: 16.66%; }
+
+
+#liveData{ margin: 0 !important; padding: 0 !important; }
+#liveData h3{ margin: 0 !important; }
+
+#liveData div{
+	min-height: 200px;
+	line-height: 200px;
+}
+#liveData i{ padding-right: 0.5em !important; }
+#myChart{height: 100%;width: 100%;}
+#chart_div{ position: relative !important; }
+#status{ margin: 1 2em; }
+#lastId{ display: none; }
+
+.clndr-controls{ height: 2em !important; line-height: 2em !important; }
+.clndr-controls button{ height: 100%; }
+.clndr-controls h4{
+	padding: 0 !important;
+	margin: 0 !important;
+}
+.clndr-controls button.w3-btn{
+	padding: 0 !important;
+	cursor: pointer;
+	display: block !important;
+	width: 100%;
+}
+.days-of-week, .clndr-days{ width: 14.28%; float: left; height: 40px; line-height: 40px;}
+
+.days-of-week{ font-weight: bold;}
+.day-container{ padding-bottom: 0.75em !important; }
+
+.clndr-previous-button, .clndr-next-button, .current-month{
+	text-align: center;
+}
+.clndr-previous-button, .clndr-next-button{
+	cursor: pointer;
+}
+.last-month, .next-month{ visibility: hidden; }
+.event{ cursor: pointer; font-weight: bold;}
+.today{ border-radius: 50%; background-color: #97ce7f; }
+.event:hover{ text-decoration: underline; }
+
+ul.w3-ul li{ padding: 1.25em 0 !important; }
+ul.w3-ul li div.w3-row, div.rowTest{ line-height: 30px; text-align: center;}
+ul#averageList li div.w3-row div.w3-third:first-child{ font-weight: bold; padding-bottom: 1.25em !important; }
+ul#averageList li div.w3-row div.w3-third:last-child{ padding-top: 0.5em !important; }
+ul#averageList{ height: 322.5px; overflow: auto;}
+
+@media all and (min-device-width: 601px){
+	#cal, .averageContainer{ height: 400px;}
+	.averageContainer{ line-height: 400px;}
+	.day-container{ padding-bottom: 0 !important; }
+	ul#averageList li div.w3-row div.w3-third:first-child{ font-weight: bold; padding-bottom: 0 !important; }
+	ul#averageList li div.w3-row div.w3-third:last-child{ padding-top: 0 !important; }
+	nav{ width: 50% !important; }
+}
+@media all and (orientation: portrait) {
+	div.popup{
+		top: 5%;  bottom: 5%;  left: 5%; right: 5%;
+		padding: 0em 0.5em 1em 0.5em;
+	}
+}
+@media all and (orientation: landscape) {
+	div.popup{
+		top: 10%;  bottom: 10%;  left: 20%; right: 20%;
+		padding: 0em 2em 1em 2em;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 0px;
+}
+::-webkit-scrollbar-track {
+	background-color: #ccc;
+}
+::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+}
