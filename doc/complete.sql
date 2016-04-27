@@ -13,6 +13,12 @@ CREATE TABLE `archive_hours` (
   `humAverage` float NOT NULL DEFAULT '0',
   `fromTo` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `sensors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 CREATE TABLE `hums` (
   `tstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `humidity` float NOT NULL DEFAULT '0',
@@ -26,12 +32,6 @@ CREATE TABLE `temps` (
   `id` int(11) DEFAULT '1',
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `sensors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `archive`( in currentTime timestamp, in period varchar(20) )
 BEGIN
