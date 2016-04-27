@@ -6,7 +6,6 @@ CREATE TABLE `archive_days` (
   `humAverage` float NOT NULL DEFAULT '0',
   `fromTo` varchar(100) DEFAULT NULL
 ) ENGINE=ARCHIVE DEFAULT CHARSET=latin1;
-SELECT * FROM rpi_project.sensors;
 CREATE TABLE `archive_hours` (
   `tstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tempAverage` float NOT NULL DEFAULT '0',
