@@ -96,3 +96,5 @@ DELIMITER ;
 set global event_scheduler = on;
 create event archiveHourly on schedule every 1 hour starts date_format( current_timestamp + interval 1 hour, "%Y-%m-%d %H:00:05" ) do call archive( 'hours' );
 create event archiveDaily on schedule every 1 day starts date_format( current_timestamp + interval 1 day, "%Y-%m-%d 00:00:10" ) do call archive( 'days' );
+CREATE USER 'web'@'localhost' IDENTIFIED BY 'web';
+GRANT ALL ON rpi_project.* TO 'web'@'localhost';
