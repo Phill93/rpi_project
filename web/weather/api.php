@@ -1,4 +1,5 @@
 <?php
+  header('Content-Type: application/json; charset=utf-8');
   $db = mysqli_connect("localhost", "web", "web", "rpi_project");
 
   if(mysqli_connect_errno()) {
@@ -9,7 +10,7 @@
   $query = mysqli_query($db, "select temps.temperature as temp, hums.humidity as hum from temps, hums where temps.tstamp < current_timestamp and temps.tstamp = hums.tstamp order by temps.tstamp desc limit 1");
   $result = mysqli_fetch_assoc($query);
 
-  echo(json_encode($result));
+  echo(json_encode($result,  JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
   mysqli_close($db);
 ?>
