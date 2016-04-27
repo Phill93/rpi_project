@@ -1,4 +1,5 @@
 CREATE DATABASE `rpi_project` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE 'rpi_project';
 CREATE TABLE `archive_days` (
   `tstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tempAverage` float NOT NULL DEFAULT '0',
