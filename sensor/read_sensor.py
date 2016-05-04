@@ -6,36 +6,20 @@ import pymysql.cursors
 debug = False
 
 
-def readtemp(temp_file, check):
-    temp_data = open(temp_file)
-    temperature = None
-    while not temperature:
+def read(file, check):
+    data_file = open(file)
+    data = None
+    while not data:
         try:
-            temperature = temp_data.read()
-            temperature = float(temperature)
-            temperature /= 1000
-            if temperature >= check['min'] or temperature <= check['max']:
-                return temperature
+            data = data_file.read()
+            data = float(data)
+            data /= 1000
+            if data >= check['min'] or data <= check['max']:
+                return data
             else:
-                temperature = None
+                data = None
         except OSError:
             time.sleep(1)
-
-
-def readhum(hum_file, check):
-    hum_data = open(hum_file)
-    humidity = None
-    while not humidity:
-        try:
-            humidity = hum_data.read()
-            humidity = float(humidity)
-            humidity /= 1000
-            if humidity >= check['min'] or humidity <= check['max']:
-                return humidity
-            else:
-                humidity = None
-        except OSError:
-            hum.sleep(1)
 
 
 def writedatabase(credentials, db_temp, db_hum):
@@ -71,8 +55,8 @@ database = {
     "db": "rpi_project"
 }
 
-temp = readtemp(temperature_file, check_temp)
-hum = readhum(humidity_file, check_hum)
+temp = read(temperature_file, check_temp)
+hum = read(humidity_file, check_hum)
 
 if debug:
     print("Temp: " + temp)
