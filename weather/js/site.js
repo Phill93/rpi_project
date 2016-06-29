@@ -1,6 +1,6 @@
-var file = "/rpi-final2/php/functions.php";
+var file = "/weather/php/functions.php";
 function getAverages(calendar, month, year){
-	
+
 	$.get(file,{ function: "averagesDays", month: month, year: year }, function(data){
 		if ( !data['rows'] ){
 			var averages = [];
@@ -42,7 +42,7 @@ var gaugeChart;
 var spaceChart;
 
 function fillCharts(data){
-	
+
 	if( !data['rows'] ){
 		gaugeChart.setTitle({ text: moment(data['temp'][0][0]).format("HH:mm:ss") + " Uhr" });
 		gaugeChart.series[0].data[0].update( data['temp'][0][1] );
@@ -251,7 +251,7 @@ $(document).ready(function(){
 		seriesNames: seriesNames,
 		load: requestData
 	}
-	
+
 	gaugeChart = initGaugeChart(gaugeOptions);
 	requestHourAverages();
 
@@ -269,7 +269,7 @@ $(document).ready(function(){
 				var parameters = $("div.current-month").text().split(" ");
 				getAverages( calendar, moment(month).format("M"), parameters[1] );
 			},
-			today: function(month){ 
+			today: function(month){
 
 			}
 		},

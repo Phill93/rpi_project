@@ -1,5 +1,0 @@
-<Files "install.sh">
-  Deny from all
-</Files>
-
-Redirect 301 weather/

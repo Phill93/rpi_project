@@ -17,7 +17,8 @@ echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo ""
 mysql -u root -p < ${BASEDIR}/tools/weather.sql
 echo "*/1 * * * * root python3 ${BASEDIR}/tools/read_sensor.py" > /etc/cron.d/weather
-ln -s ${BASEDIR} /var/www/html/weather
+ln -s ${BASEDIR}/weather /var/www/html/weather
+ln -s ${BASEDIR}/stuff /var/www/html/stuff
 echo "Rebooting in 5 seconds"
 sleep 5
 reboot
