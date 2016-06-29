@@ -2,4 +2,4 @@
   Deny from all
 </Files>
 
-301 weather/
+Redirect 301 weather/
