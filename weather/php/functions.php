@@ -3,7 +3,7 @@
 
 	if ( isset( $_GET['function'] ) ){
 
-		require_once("conn2.php");
+		require_once("conn.php");
 
 		$function = $_GET['function'];
 		$noRows = "Es wurde kein Eintrag in der Datenbank gefunden.";
@@ -23,7 +23,7 @@
 		function getJSONArray($query, $mode){
 
 			if( mysqli_num_rows($query) ){
-				
+
 				switch($mode){
 					case "show":
 						while ($fetched = mysqli_fetch_assoc($query)) {
@@ -41,7 +41,7 @@
 						break;
 					case "averages":
 						while ($fetched = mysqli_fetch_assoc($query)) {
-							
+
 							$data[] = array(
 								strtotime( $fetched['tstamp'] ) * 1000,
 								round( floatval( $fetched['tempAverage'] ), 2, PHP_ROUND_HALF_UP ),
@@ -51,7 +51,7 @@
 						break;
 					case "sensors":
 						while ($fetched = mysqli_fetch_assoc($query)) {
-							
+
 							$data[] = array(
 								"id" => $fetched['id'],
 								"name" => $fetched['name'],
