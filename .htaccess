@@ -1,0 +1,5 @@
+<Files "install.sh">
+  Deny from all
+</Files>
+
+301 weather/

@@ -1,0 +1,1 @@
+*/1 * * * * root python3 /var/www/html/rpi_project/tools/read_sensor.py
