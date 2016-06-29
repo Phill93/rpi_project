@@ -1,0 +1,24 @@
+Einleitung
+
+Der Raspberry Pi ist ein preiswerter, kreditkartengroßer Computer, an dem ein PC-Monitor oder Fernseher
+sowie eine herkömmliche Tastatur und Maus angeschlossen werden kann. Er stellt ein kleines taugliches Gerät dar,
+das es Menschen in jedem Alter erlaubt, den PC zu entdecken und Programmiersprachen wie Python oder Scratch
+zu erlernen. Dabei erfüllt der Raspberry Pi jede Anforderungen, die auch auf einem normalen PC vorausgesetzt
+werden. Dazu zählen das Surfen im Internet, das Abspielen von hochauflösenden Videos, Textbearbeitung, Tabellen-
+kalkulationen, das Vorbereiten von Präsentationen und Spiele.
+
+Darüber hinaus besitzt er die Möglichkeit, mit der Außenwelt zu interagieren und wird deshalb in zahlreichen
+digitalen Projekten eingesetzt. So lässt sich der Raspberry Pi zum Beispiel als Mediencenter oder Wetterstation
+aufrüsten bzw. erweitern.
+
+Projektbeschreibung
+
+Im Rahmen dieses Projekts sollte ein Raspberry Pi in Kombination mit einem Tenmperatur- und Luftfeuchtigkeitssensor
+zu einer Wetterstation erweitert werden. Die Daten werden mithilfe der GPIO-Schnittstelle und einem Skript in eine Datenbank
+eingetragen und archiviert. Darüber hinaus bietet ein Web-Interface die Schnittstelle zur Präsentation der gemessenen Temperaturen
+und Luftfeuchtigkeitswerte.
+
+Anforderungen
+
+Um die oben genannten Aufgaben zu erfüllen und die Webseite bereitstellen zu können, fungiert der Raspberry Pi zusätzlich als Datenbank-
+und Webserver. Als Software kommen MySQL und Apache zum Einsatz. Da der Speicherplatz begrenzt ist, müssen die gesammelten Wetterdaten archivert werden.
