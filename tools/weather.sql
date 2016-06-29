@@ -305,8 +305,6 @@ DELIMITER ;
 set global event_scheduler = on;
 -- Create web user and grant privileges
 
-drop user 'web'@'localhost';
-
 create user web@localhost identified by 'web';
 grant all privileges on weather.* to web@localhost;
 
