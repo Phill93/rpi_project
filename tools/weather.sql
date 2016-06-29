@@ -199,19 +199,6 @@ DELIMITER ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `fillWeather`()
-BEGIN
-	insert into temps(temperature) values( RAND()*(70-1)+1 );
-	-- insert into hums(humidity, id) values( RAND()*(70-1)+1, FLOOR(RAND()*(4-1)+1) );
-	insert into hums(humidity) values( RAND()*(70-1)+1 );
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -282,23 +269,6 @@ DELIMITER ;;
 /*!50003 SET character_set_results = @saved_cs_results */ ;;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;;
 /*!50106 DROP EVENT IF EXISTS `insertData` */;;
-DELIMITER ;;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
-/*!50003 SET character_set_client  = utf8 */ ;;
-/*!50003 SET character_set_results = utf8 */ ;;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
-/*!50003 SET sql_mode              = '' */ ;;
-/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
-/*!50003 SET time_zone             = 'SYSTEM' */ ;;
-/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `insertData` ON SCHEDULE EVERY 20 SECOND STARTS date_format(current_timestamp + interval 1 minute, '%Y-%m-%d %H:%i:00') ON COMPLETION PRESERVE ENABLE DO call fillWeather() */ ;;
-/*!50003 SET time_zone             = @saved_time_zone */ ;;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;;
-/*!50003 SET character_set_results = @saved_cs_results */ ;;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;;
 DELIMITER ;
 /*!50106 SET TIME_ZONE= @save_time_zone */ ;
 
