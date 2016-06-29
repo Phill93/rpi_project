@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASEDIR=$(dirname "$0")
+BASEDIR=$(realpath -L $(dirname "$0"))
 
 echo "dtoverlay=dht11,gpiopin=4" >> /boot/config.txt
 apt-get update
