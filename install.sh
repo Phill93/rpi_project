@@ -4,7 +4,8 @@ BASEDIR=$(realpath -L $(dirname "$0"))
 
 echo "dtoverlay=dht11,gpiopin=4" >> /boot/config.txt
 apt-get update
-apt-get install apache2 mysql-server php5-mysql php5 libapache2-mod-php5 php5-mcrypt -y
+apt-get install apache2 mysql-server php5-mysql php5 libapache2-mod-php5 php5-mysqlnd php5-mcrypt -y
+service apache2 restart
 apt-get install python3 python3-pip -y
 pip3 install pymysql
 cp ${BASEDIR}/tools/weather.cnf /etc/mysql/conf.d/

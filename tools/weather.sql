@@ -125,48 +125,48 @@ CREATE TABLE `temps` (
 /*!50003 SET sql_mode              = '' */ ;
 
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `archiveWeather`( in period varchar(20) )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `archiveWeather`( in currentTime timestamp, in period varchar(20) )
 BEGIN
 	case period
 	when 'hours' then
 		if ( ( select count(*) from temps ) != 0 ) and ( ( select count(*) from hums ) != 0 ) then
 			insert into archive_hours(tempAverage, humAverage, fromTo)
 			values(
-				( select avg(temperature) from temps where tstamp < current_timestamp() ),
-				( select avg(humidity) from hums where tstamp < current_timestamp() ),
+				( select avg(temperature) from temps where tstamp < currentTime ),
+				( select avg(humidity) from hums where tstamp < currentTime ),
 				concat(
-					(select min(tstamp) from temps where tstamp < current_timestamp()),
+					(select min(tstamp) from temps where tstamp < currentTime),
 					" - ",
-					(select max(tstamp) from temps where tstamp < current_timestamp())
+					(select max(tstamp) from temps where tstamp < currentTime)
 				)
 			);
-			delete from temps where tstamp < current_timestamp();
-			delete from hums where tstamp < current_timestamp();
+			delete from temps where tstamp < currentTime;
+			delete from hums where tstamp < currentTime;
 		end if;
 	when 'days' then
 		if ( ( select count(*) from archive_hours ) != 0 ) then
 			insert into archive_days(tempAverage, humAverage, fromTo)
 			values(
-				( select avg(tempAverage) from archive_hours where tstamp < current_timestamp() ),
-				( select avg(humAverage) from archive_hours where tstamp < current_timestamp() ),
+				( select avg(tempAverage) from archive_hours where tstamp < currentTime ),
+				( select avg(humAverage) from archive_hours where tstamp < currentTime ),
 				concat(
-					(select min(tstamp) from archive_hours where tstamp < current_timestamp()),
+					(select min(tstamp) from archive_hours where tstamp < currentTime),
 					" - ",
-					(select max(tstamp) from archive_hours where tstamp < current_timestamp())
+					(select max(tstamp) from archive_hours where tstamp < currentTime)
 				)
 			);
-			delete from archive_hours where tstamp < current_timestamp();
+			delete from archive_hours where tstamp < currentTime;
 		end if;
 	when 'months' then
 		if ( ( select count(*) from archive_days ) != 0 ) then
 			insert into archive_months(tempAverage, humAverage, fromTo)
 			values(
-				( select avg(tempAverage) from archive_days where tstamp < current_timestamp() ),
-				( select avg(humAverage) from archive_days where tstamp < current_timestamp() ),
+				( select avg(tempAverage) from archive_days where tstamp < currentTime ),
+				( select avg(humAverage) from archive_days where tstamp < currentTime ),
 				concat(
-					(select min(tstamp) from archive_days where tstamp < current_timestamp()),
+					(select min(tstamp) from archive_days where tstamp < currentTime),
 					" - ",
-					(select max(tstamp) from archive_days where tstamp < current_timestamp())
+					(select max(tstamp) from archive_days where tstamp < currentTime)
 				)
 			);
 		end if;
@@ -174,12 +174,12 @@ BEGIN
 		if ( ( select count(*) from archive_months ) != 0 ) then
 			insert into archive_years(tempAverage, humAverage, fromTo)
 			values(
-				( select avg(tempAverage) from archive_months where tstamp < current_timestamp() ),
-				( select avg(humAverage) from archive_months where tstamp < current_timestamp() ),
+				( select avg(tempAverage) from archive_months where tstamp < currentTime ),
+				( select avg(humAverage) from archive_months where tstamp < currentTime ),
 				concat(
-					(select min(tstamp) from archive_months where tstamp < current_timestamp()),
+					(select min(tstamp) from archive_months where tstamp < currentTime),
 					" - ",
-					(select max(tstamp) from archive_months where tstamp < current_timestamp())
+					(select max(tstamp) from archive_months where tstamp < currentTime)
 				)
 			);
 		end if;
@@ -244,7 +244,7 @@ DELIMITER ;;
 /*!50003 SET sql_mode              = '' */ ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
 /*!50003 SET time_zone             = 'SYSTEM' */ ;;
-/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `archiveDailyWeather` ON SCHEDULE EVERY 1 DAY STARTS date_format(current_timestamp + interval 1 day, '%Y-%m-%d 00:00:10') ON COMPLETION PRESERVE ENABLE DO call archiveWeather( 'days' ) */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `archiveDailyWeather` ON SCHEDULE EVERY 1 DAY STARTS date_format(current_timestamp + interval 1 day, '%Y-%m-%d 00:00:10') ON COMPLETION PRESERVE ENABLE DO call archiveWeather( current_timestamp(), 'days' ) */ ;;
 /*!50003 SET time_zone             = @saved_time_zone */ ;;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;;
@@ -262,7 +262,7 @@ DELIMITER ;;
 /*!50003 SET sql_mode              = '' */ ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
 /*!50003 SET time_zone             = 'SYSTEM' */ ;;
-/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `archiveHourlyWeather` ON SCHEDULE EVERY 1 HOUR STARTS date_format(current_timestamp + interval 1 hour, '%Y-%m-%d %H:00:15') ON COMPLETION PRESERVE ENABLE DO call archiveWeather( 'hours' ) */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `archiveHourlyWeather` ON SCHEDULE EVERY 1 HOUR STARTS date_format(current_timestamp + interval 1 hour, '%Y-%m-%d %H:00:15') ON COMPLETION PRESERVE ENABLE DO call archiveWeather( current_timestamp(), 'hours' ) */ ;;
 /*!50003 SET time_zone             = @saved_time_zone */ ;;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;;

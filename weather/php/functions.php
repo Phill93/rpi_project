@@ -126,8 +126,8 @@
 				break;
 			case "averagesDays":
 				if( isset( $_GET['month'] ) && isset( $_GET['year'] ) ){
-
-					$sql = "select * from archive_days where year(tstamp) = ? and month(tstamp) = ?;";
+					
+					$sql = "select date(fromTo) as tstamp, tempAverage, humAverage from archive_days where year(date(fromTo)) = ? and month(date(fromTo)) = ?;";
 					$param[0] = "i";
 					$param[1] = "i";
 

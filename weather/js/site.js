@@ -39,12 +39,11 @@ function createTabsBar(){
 }
 var splineChart;
 var gaugeChart;
-var spaceChart;
 
 function fillCharts(data){
 
 	if( !data['rows'] ){
-		gaugeChart.setTitle({ text: moment(data['temp'][0][0]).format("HH:mm:ss") + " Uhr" });
+		gaugeChart.setTitle({ text: moment(data['temp'][0][0]).format("HH:mm") + " Uhr" });
 		gaugeChart.series[0].data[0].update( data['temp'][0][1] );
 		gaugeChart.series[1].data[0].update( data['hum'][0][1] );
 	}
@@ -152,12 +151,6 @@ function initGaugeChart(options){
 			style: { fontSize: '24px' }
 		},
 		tooltip: {
-			/*borderWidth: 0,
-			backgroundColor: 'none',
-			shadow: false,
-			style: { fontSize: '16px', left: '10px', right: '10px', top: '10px', bottom: '10px'},
-			useHTML: true,
-			pointFormat: '<p class="w3-center" style="margin-top: 3em; font-size:2em; color: {point.color}; font-weight: bold">{point.y}</p>'*/
 			enabled: false
 		},
 		pane: {
@@ -243,7 +236,6 @@ $(document).ready(function(){
 	$("div.ui-loader").remove();
 
 	var seriesNames = ["Temperatur", "Luftfeuchtigkeit"];
-	var spaceSeries = ["Belegt", "Frei"];
 
 	var gaugeOptions = {
 		selector: "gaugeChart",
@@ -260,12 +252,13 @@ $(document).ready(function(){
 	var currentMonth = moment().format("M");
 	var currentYear = moment().format("YYYY");
 
+	alert(currentYear);
+
 	var calendar = $('#cal').clndr({
 		template: $("#cal-template").html(),
 		daysOfTheWeek: weekdays,
 		clickEvents: {
 			onMonthChange: function(month){
-
 				var parameters = $("div.current-month").text().split(" ");
 				getAverages( calendar, moment(month).format("M"), parameters[1] );
 			},
