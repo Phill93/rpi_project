@@ -262,7 +262,7 @@ DELIMITER ;;
 /*!50003 SET sql_mode              = '' */ ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
 /*!50003 SET time_zone             = 'SYSTEM' */ ;;
-/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `archiveHourlyWeather` ON SCHEDULE EVERY 1 HOUR STARTS date_format(current_timestamp + interval 1 hour, '%Y-%m-%d %H:00:15') ON COMPLETION PRESERVE ENABLE DO call archiveWeather( current_timestamp(), 'hours' ) */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `archiveHourlyWeather` ON SCHEDULE EVERY 1 HOUR STARTS date_format(current_timestamp + interval 1 hour, '%Y-%m-%d %H:00:05') ON COMPLETION PRESERVE ENABLE DO call archiveWeather( current_timestamp(), 'hours' ) */ ;;
 /*!50003 SET time_zone             = @saved_time_zone */ ;;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;;
