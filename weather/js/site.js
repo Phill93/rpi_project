@@ -252,8 +252,6 @@ $(document).ready(function(){
 	var currentMonth = moment().format("M");
 	var currentYear = moment().format("YYYY");
 
-	alert(currentYear);
-
 	var calendar = $('#cal').clndr({
 		template: $("#cal-template").html(),
 		daysOfTheWeek: weekdays,
